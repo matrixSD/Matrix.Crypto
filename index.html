@@ -1,83 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-    <title>MATRIX</title>
-
-
+    <style>
+        .calculator-container {
+            max-width: 450px;
+            margin: 40px auto;
+            padding: 25px;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-family: 'Tajawal', Arial, sans-serif;
+            direction: rtl;
+        }
+        h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            font-size: 18px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        input[type="number"]:focus {
+            border-color: #007bff;
+        }
+        .result {
+            font-size: 20px;
+            color: #2c3e50;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        .copy-btn {
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .copy-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+        .discount-btn {
+            padding: 12px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .discount-btn:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        .discount-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 480px) {
+            .calculator-container {
+                margin: 20px;
+                padding: 20px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav>
-        <input type="checkbox"  id="check">
-        <label for="check" class="checkbtn">
-            <i class="fas fa-bars"></i>
-        </label>
-<label class="logo">matrix</label>
-<ul>
-    <li><a href="#" class="active">Home |</a></li>
-    <li><a href="#input">Price |</a></li>
-    <li><a href="#buy">Buy Crypto |</a></li>
-    <li><a href="#service">Service |</a></li>
-    <li><a href="#service">About</a></li>
-</ul>
-    </nav>
-    <div class="wrap">
-        <h1>Daily Renewed Prices</h1>
+    <div class="calculator-container">
+        <h3>حاسبة خصم</h3>
+        <input type="number" id="amount" placeholder="أدخل المبلغ" oninput="calculateDiscount()">
+        <div class="result" id="result">المبلغ بعد الخصم: 0</div>
+        <div>
+            <button class="discount-btn" onclick="setDiscount(0.05)">بنكك يخصم 5%</button>
+            <button class="discount-btn" onclick="setDiscount(0.08)">ماي كاشي يخصم 8%</button>
+            <button class="discount-btn" onclick="setDiscount(0.15)">رصيد يخصم 15%</button>
+        </div>
+        <button class="copy-btn" onclick="copyResult()">نسخ المبلغ</button>
     </div>
-    <div class="calc">
-        <input id="input" type="text" inputmode="numeric">
-    <select id="currency">
-      <option value="Ruble" selected>Ruble</option>
-      <option value="USD">USD</option>
-      <option value="USDT">USDT</option>
-    </select>
-    <div id="div"></div>
 
-    </div>
-    <div class="Buy">
-        
- <img src="db.jpg" width="60em" alt=""><h2 id="buy">Digital Bank 
-    <a href="https://facebook.com/digitalbank.Ltd/"><i class="fab fa-facebook"></i></a>
-    <a href="https://wa.link/ekjtb7"> <i class="fab fa-whatsapp-square"></i></a>
-        <a href="tel:+249116692222"> <i class="fas fa-phone"></i></a>
-    </h2>
-    </div>
-    <br>
-    <div class="Buy1">
-        <img src="gs.jpg" width="60em" alt=""><h2>Gurashi Yossef
-           <a href="https://facebook.com/gurashitech"><i class="fab fa-facebook"></i></a>
-           <a href="https://wa.link/5mf6g9"> <i class="fab fa-whatsapp-square"></i></a>
-               <a href="#"> <i class="fas fa-phone"></i></a>
-           </h2>
-           </div>
-           <br>
-           <div class="Buy2">
-            <img src="mt.jpg" width="60em" alt=""><h2>MATRIX TRIXO 
-               <a href="https://facebook.com/matrix.sd/"><i class="fab fa-facebook"></i></a>
-               <a href="https://iwtsp.com/249926449414"> <i class="fab fa-whatsapp-square"></i></a>
-                   <a href="tel:+249926449414"> <i class="fas fa-phone"></i></a>
-               </h2>
-               </div>
-               <br>
-             <div class="aboutme">
+    <script>
+        let discountRate = 0.05; // القيمة الأولية للخصم
 
-                <img src="about.jpg" alt="mogtba" style="width:100%">
-                <h1 id="service">Mogtba Amin</h1>
-                <p class="title1">SEO & Founder, web developer</p>
-  <p>SIU University</p>
-  <div style="margin: 24px 0;">
-    
-    <a href="https://facebook.com/matrix.sd/"><i class="fab fa-facebook"></i></a>
-    <a href="https://iwtsp.com/249926449414"> <i class="fab fa-whatsapp-square"></i></a>
-        <a href="tel:+249926449414"> <i class="fas fa-phone"></i></a>
-  </div>
-  <p><button>Contact</button></p>
-             </div>
-             <div class="bottom1"><p>All Done By MATRIX</p></div>
-<script src="java.js"></script>
+        function calculateDiscount() {
+            const amount = parseFloat(document.getElementById('amount').value);
+            if (!isNaN(amount) && amount >= 0) {
+                const discount = amount * discountRate;
+                const finalAmount = Math.floor(amount - discount); // إزالة الأرقام العشرية
+                document.getElementById('result').innerText = `المبلغ بعد الخصم: ${finalAmount}`;
+            } else {
+                document.getElementById('result').innerText = 'المبلغ بعد الخصم: 0';
+            }
+        }
+
+        function setDiscount(rate) {
+            discountRate = rate; // تحديث النسبة المئوية للخصم
+            calculateDiscount(); // إعادة حساب المبلغ بعد الخصم
+        }
+
+        function copyResult() {
+            const resultText = document.getElementById('result').innerText.split(': ')[1];
+            const textArea = document.createElement('textarea');
+            textArea.value = resultText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+
+            alert('تم نسخ المبلغ!');
+        }
+    </script>
 </body>
 </html>
